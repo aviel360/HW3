@@ -5,7 +5,7 @@ from gradesCalc import *
 def main():
     # Testing the `final_grade` function
     input_path = 'tests/input'
-    output_path = 'tests/out'
+    output_path = 'tests/output'
     course_avg = final_grade(input_path=input_path, output_path=output_path)
     assert course_avg == 70
 

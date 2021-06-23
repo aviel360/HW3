@@ -5,38 +5,38 @@
 #   output_path: Path to the file that will contain the output
 def valid (line: str) -> bool:
     chunks = line.split(',')
-    if chunks[0].count() > 8 or chunks[0][0] == 0:
+    if len(chunks[0]) != 8 or int(chunks[0][0]) == 0:
         return False
-    if not " ".join(chunks[1]).isalpha():
+    if not "".join(chunks[1]).isalpha():
         return False
-    if chunks[2] < 1:
+    if int(chunks[2]) < 1:
         return False
-    if chunks[3] < 51 or chunks[3] > 100:
+    if int(chunks[3]) < 51 or int(chunks[3]) > 100:
         return False
     return True
         
 def makeLine(line, map):
     chunks = line.split(',')
     id = chunks[0]
-    homework_avg = chunks[0]
-    final_grade = (id[6]*10 + id[7] + homework_avg)/2
-    map[id] = id + ', ' + homework_avg + ', ' + final_grade
+    homework_avg = int(chunks[3])
+    final_grade = (int(id[6])*10 + int(id[7]) + homework_avg)/2
+    map[id] = id + ', ' + str(homework_avg) + ', ' + str(int(final_grade))
 
 def final_grade(input_path: str, output_path: str) -> int:
     input_file = open(input_path, "r")
     output_file = open(output_path, "w")
     map = {}
     for line in input_file:
-        " ".join(line.split())
+        line = "".join(line.split())
         if valid(line):
             makeLine(line, map)
     
     sorted_list = sorted(map.items())
-    total_sum =0
+    total_sum = 0
     students_counter = 0
     for key, line in sorted_list:
-        output_file.append(line)
-        total_sum += line.split(',')[1]
+        output_file.write(line + "\n")
+        total_sum += int(line.split(',')[2])
         students_counter += 1
     return total_sum/students_counter
         
