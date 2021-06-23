@@ -3,9 +3,49 @@
 # rows from the input file) into the file in `output_path`. Returns the average of the grades.
 #   input_path: Path to the file that contains the input
 #   output_path: Path to the file that will contain the output
+def valid (line: str) -> bool:
+    chunks = line.split(',')
+    if chunks[0].count() > 8 or chunks[0][0] == 0:
+        return False
+    if not " ".join(chunks[1]).isalpha():
+        return False
+    if chunks[2] < 1:
+        return False
+    if chunks[3] < 51 or chunks[3] > 100:
+        return False
+    return True
+        
+def makeLine(line, map):
+    chunks = line.split(',')
+    id = chunks[0]
+    homework_avg = chunks[0]
+    final_grade = (id[6]*10 + id[7] + homework_avg)/2
+    map[id] = id + ', ' + homework_avg + ', ' + final_grade
+
 def final_grade(input_path: str, output_path: str) -> int:
-    # TODO: implement here
-    raise NotImplementedError
+    input_file = open(input_path, "r")
+    output_file = open(output_path, "w")
+    map = {}
+    for line in input_file:
+        " ".join(line.split())
+        if valid(line):
+            makeLine(line, map)
+    
+    sorted_list = sorted(map.items())
+    total_sum =0
+    students_counter = 0
+    for key, line in sorted_list:
+        output_file.append(line)
+        total_sum += line.split(',')[1]
+        students_counter += 1
+    return total_sum/students_counter
+        
+
+    
+        
+
+
+    
 
 
 #### PART 2 ####
@@ -13,4 +53,10 @@ def final_grade(input_path: str, output_path: str) -> int:
 #   s1: The string that we want to check if it can be constructed
 #   s2: The string that we want to construct s1 from
 def check_strings(s1: str, s2: str) -> bool:
-    
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', \
+    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    for letter in letters:
+        if s1.lower().count(letter) > s2.lower().count(letter):
+            return False
+    return True
+
