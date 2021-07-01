@@ -57,8 +57,10 @@ def final_grade(input_path: str, output_path: str) -> int:
 def check_strings(s1: str, s2: str) -> bool:
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', \
     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    src = s1.lower()
+    dst = s2.lower()
     for letter in letters:
-        if (s1.lower()).count(letter) > (s2.lower()).count(letter):
+        if src.count(letter) > dst.count(letter):
             return False
     return True
 

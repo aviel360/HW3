@@ -1,0 +1,17 @@
+# Vi[m] backups
+*~
+*.swp
+
+# IDEA project
+.idea/
+
+# Compilation stuff
+build/
+cmake-build-debug/
+*.py[cod]
+
+# Virtual environment
+venv/
+
+# Hypothesis
+.hypothesis/
